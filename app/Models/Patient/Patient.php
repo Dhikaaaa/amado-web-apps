@@ -3,11 +3,12 @@
 namespace App\Models\Patient;
 
 use Laravel\Passport\HasApiTokens;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Model;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Device\UserDevice;
+use Illuminate\Contracts\Auth\CanResetPassword;
 
-class Patient extends Model
+class Patient extends Model implements CanResetPassword
 {
     use Notifiable, HasApiTokens;
 

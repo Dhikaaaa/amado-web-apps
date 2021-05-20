@@ -20,14 +20,10 @@ class CreateUserDevicesTable extends Migration
             $table->string('serial_number')->nullable()->unique();
             $table->string('api_token')->nullable();
             $table->boolean('status')->default(0);
-            $table->foreign('patient_id')
-                ->references('id')
-                ->on('patients')
-                ->cascadeOnDelete();
-            $table->foreign('device_id')
-                ->references('id')
-                ->on('devices')
-                ->cascadeOnDelete();
+
+            // * Relation
+            $table->foreign('patient_id')->references('id')->on('patients')->cascadeOnDelete();
+            $table->foreign('device_id')->references('id')->on('devices')->cascadeOnDelete();
             $table->timestamps();
         });
     }
