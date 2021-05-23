@@ -3,8 +3,10 @@
 namespace App\Services\UserService;
 
 
-interface UserService{
-    public function updateUser($request);
-    public function updateUserPhoto($request);
-    public function getUserPhoto($request);
+interface UserService
+{
+    function updateUser($request);
+    function updateUserPhoto($request);
+    function getUserPhoto($request);
+    function getBiodata($request);
 }

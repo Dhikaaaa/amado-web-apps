@@ -4,20 +4,16 @@ namespace App\Http\Controllers\Api\Patient;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Services\AuthApi\Implement\PatientAuthService;
 use App\Services\UserService\Implement\PatientService;
 use Exception;
 
 class PatientProfileController extends Controller
 {
-    protected $patientAuthService;
     protected $patientService;
 
     public function __construct(
-        PatientAuthService $patientAuth,
         PatientService $patientService
     ) {
-        $this->patientAuthService = $patientAuth;
         $this->patientService = $patientService;
     }
 
@@ -49,7 +45,7 @@ class PatientProfileController extends Controller
             return response()->json([
                 'code' => 400,
                 'status' => 'gagal',
-                'message' => 'data gagal diupdate'
+                'message' => $e
             ]);
         }
     }
@@ -101,6 +97,35 @@ class PatientProfileController extends Controller
             'code' => 400,
             'status' => 'gagal',
             'message' => 'gambar gagal diupload'
+        ]);
+    }
+
+
+    public function getBiodata(Request $request)
+    {
+        $patientData = $this->patientService->getBiodata($request);
+
+        if ($patientData != null) {
+            return response()->json([
+                "code" => 200,
+                "status" => "berhasil",
+                "message" => "data pasien berhasil ditamabahkan",
+                "user" => [
+                    "id" => $patientData->id,
+                    "name" => $patientData->name,
+                    "email" => $patientData->email,
+                    "jenis_kelamin" => $patientData->jenis_kelamin,
+                    "alamat" => $patientData->alamat,
+                    "tangggal_lahir" => $patientData->tanggal_lahir,
+                    "phone" => $patientData->phone,
+                ]
+            ]);
+        }
+
+        return response()->json([
+            'code' => 400,
+            'status' => 'gagal',
+            'message' => 'pasien belum terdaftar'
         ]);
     }
 }

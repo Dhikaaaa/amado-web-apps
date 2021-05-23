@@ -24,6 +24,7 @@ class PatientRepository implements UserRepository
 
         $this->patientModel::find($idPatient)
             ->update([
+                'name' => $newData['name'],
                 'jenis_kelamin' => $newData['jenis_kelamin'],
                 'tanggal_lahir' => $newData['tanggal_lahir'],
                 'phone' => $newData['phone'],
@@ -68,5 +69,11 @@ class PatientRepository implements UserRepository
         }
 
         return null;
+    }
+
+    public function getPatient($patient_id): Patient
+    {
+        $patient = Patient::find($patient_id);
+        return $patient;
     }
 }

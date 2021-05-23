@@ -374,6 +374,47 @@ Response :
 <!-- ============= GET PATIENT START ============= -->
 ## <a name="get_biodata"></a>Get Biodata
 #### <a name="biodata_pasien"></a>Pasien
+Request :
+-   Method: POST
+-   Endpoint : 'patient/bio'
+-   Header :
+    -   Content-Type : application/json
+    -   Authorization : bearer
+-   Body:
+
+Patient ID
+```json
+{
+    "id" : 1
+}
+```
+Response: 
+-   Success:
+```json
+{
+    "code": 200,
+    "status": "berhasil",
+    "message": "data pasien berhasil ditamabahkan",
+    "user": {
+        "id": 1,
+        "name": "nama_paisen",
+        "email": "email_pasien",
+        "jenis_kelamin": "jenis_kelamin_pasien",
+        "alamat": "alamat_pasien",
+        "tangggal_lahir": "tanggal_lahir_pasien",
+        "phone": "nomor_telepon_pasien"
+    }
+}
+```
+
+-   Failed:
+```json
+{
+    "code": 400,
+    "status": "gagal",
+    "mesage": "pasien belum terdaftar"
+}
+```
 <!-- ============= GET PATIENT END ============= -->
 <!-- ============= AUTHENTICATION END ============= -->
 

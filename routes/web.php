@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Notification\NotificationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
@@ -61,3 +62,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware('guest')->group(function () {
 	Route::view('/login', 'auth.login')->name('login');
 });
+
+
+/**
+ * * Route Notification
+ */
+Route::get('/send-notification', [NotificationController::class, 'sendNotification']);

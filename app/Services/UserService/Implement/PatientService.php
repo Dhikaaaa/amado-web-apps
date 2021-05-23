@@ -7,7 +7,8 @@ use App\Services\UserService\UserService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class PatientService implements UserService{
+class PatientService implements UserService
+{
 
     protected $patientRepository;
 
@@ -15,24 +16,25 @@ class PatientService implements UserService{
     {
         $this->patientRepository = $patientRepository;
     }
-    
-    
+
+
     // update patien data
     public function updateUser($request)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => 'required',
+            'name' => 'required',
             'jenis_kelamin' => 'required',
             'tanggal_lahir' => 'required',
             'phone' => 'required',
             'alamat' => 'required',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return;
         }
 
         $patientUpdateData = collect($request);
+
         $patientHasBeenAuthenticated = Auth::guard('patientapi')->user();
 
         $patientUpdated = $this->patientRepository->saveUpdateUser($patientHasBeenAuthenticated, $patientUpdateData);
@@ -48,7 +50,7 @@ class PatientService implements UserService{
             'photo' => 'required'
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return;
         }
 
@@ -57,7 +59,7 @@ class PatientService implements UserService{
 
         // get patient authenticated
         $patientHasBeenAuthenticated = Auth::guard('patientapi')->user();
-        
+
         // convert to image
         $image = convertBase64ToImage($patientPhotoFile);
 
@@ -73,12 +75,19 @@ class PatientService implements UserService{
         $patientHasBeenAuthenticated = Auth::guard('patientapi')->user();
 
         $imagePath = $this->patientRepository->getPhotoProfile($patientHasBeenAuthenticated->id);
-        
-        if($imagePath != null){
+
+        if ($imagePath != null) {
             $base64 =  convertImageToBase64($imagePath);
             return $base64;
         }
 
         return null;
+    }
+
+    public function getBiodata($request)
+    {
+        $patientId = $request->id;
+        $patientBiodata = $this->patientRepository->getPatient($patientId);
+        return $patientBiodata;
     }
 }
