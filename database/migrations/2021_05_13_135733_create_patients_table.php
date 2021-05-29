@@ -22,6 +22,7 @@ class CreatePatientsTable extends Migration
             $table->string('password')->nullable();
             $table->string('jenis_kelamin')->nullable();
             $table->string('tanggal_lahir')->nullable();
+            $table->string('firebase_api_token')->nullable();
             $table->text('alamat')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

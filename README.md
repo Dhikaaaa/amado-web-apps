@@ -53,6 +53,17 @@ Hardware yang terintegrasi ini bertugas untuk mendapatkan data saturasi oksigen 
         -   [Pasien](#forgot_pasien)
     -   [Reset](#reset)
         -   [Pasien](#reset_pasien)
+-   [Notification](#notification)
+    -   [Topic](#notification_topic)
+        -   [Save Topic]($n_topic_save)
+        -   [Update Topic]($n_topic_update)
+        -   [Delete Topic]($n_topic_delete)
+        -   [Get Topic]($n_topic_get)
+    -   [Token](#notification_token)
+        -   [Save Token]($n_token_save)
+        -   [Update token]($n_token_update)
+        -   [Delete token]($n_token_delete)
+        -   [Get token]($n_token_get)
 -   [Device](#device)
     -   [Create Hardware Identifier](#d_hardware)
         -   [Pasien](#dh_pasien)
@@ -102,7 +113,7 @@ Response :
 {
     "code": 200,
     "status": "berhasil",
-    "token_type": "Bearer",
+    "Topic_type": "Bearer",
     "access_token": "example_token",
     "token_id": "example_token_id",
     "user": {
@@ -598,6 +609,7 @@ Response :
 
 
 
+
 <!-- ============= MONITORING START ============= -->
 # <a name="m_monitoring"></a>Monitoring
 
@@ -607,6 +619,8 @@ Response :
 
 <!-- ============= GET PULSE DATA END ============= -->
 <!-- ============= MONITORING END ============= -->
+
+
 
 
 <!-- ============= DEVICE START ============= -->
@@ -683,7 +697,4 @@ Response :
 ```
 
 <!-- ============= GET DATA SENSOR END ============= -->
-
-
-
 <!-- ============= DEVICE END ============= -->

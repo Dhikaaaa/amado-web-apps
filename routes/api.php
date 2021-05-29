@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Patient\ApiForgotPasswordController;
 use App\Http\Controllers\Api\Patient\PatientProfileController;
 use App\Http\Controllers\Api\Patient\PatientDeviceController;
 use App\Http\Controllers\Api\Device\PulseOximetryController;
+use App\Http\Controllers\Api\Notification\NotificationPatientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,14 @@ Route::prefix('patient')->group(function () {
          * * Route manajemen data monitoring
          */
         Route::prefix('monitoring')->group(function () {
+        });
+
+
+        /**
+         * * Route Token Firebase untuk dan menerima notifikasi berdasarkan API Token Firebase
+         */
+        Route::prefix('token')->group(function () {
+            Route::post('/save', [NotificationPatientController::class, 'saveApiToken']);
         });
     });
 });

@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             SettingSeeder::class,
             DeviceSeeder::class,
+            PulseOximetryNotificationSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
     }

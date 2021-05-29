@@ -6,6 +6,7 @@ use Laravel\Passport\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Model;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Device\UserDevice;
+use App\Models\Notification\NotificationTemplate;
 use Illuminate\Contracts\Auth\CanResetPassword;
 
 class Patient extends Model implements CanResetPassword
@@ -31,5 +32,13 @@ class Patient extends Model implements CanResetPassword
     public function userDevice()
     {
         return $this->hasOne(UserDevice::class);
+    }
+
+    /**
+     * * Patient has many notification
+     */
+    public function notificationTemplates()
+    {
+        return $this->belongsToMany(NotificationTemplate::class);
     }
 }
