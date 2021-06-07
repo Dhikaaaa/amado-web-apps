@@ -2,11 +2,11 @@
 
 namespace App\Models\Notification;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Patient\Patient;
-use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class NotificationTemplate extends Pivot
+class NotificationTemplate extends Model
 {
     use HasFactory;
 
@@ -20,11 +20,20 @@ class NotificationTemplate extends Pivot
         'image'
     ];
 
+
     /**
-     * * Notification belongs to many Patient
+     * * Each Notification has one Topics
      */
-    public function users()
+    public function topic()
     {
-        return $this->belongsToMany(Patient::class);
+        return $this->hasOne(NotificationTopic::class);
+    }
+
+    /**
+     * * NotificationTemplate belongs to many Patient using Notification pivot
+     */
+    public function patients()
+    {
+        return $this->belongsToMany(Patient::class)->using(Notification::class)->withTimestamps();
     }
 }

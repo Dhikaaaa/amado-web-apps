@@ -78,7 +78,18 @@ Route::prefix('patient')->group(function () {
          * * Route Token Firebase untuk dan menerima notifikasi berdasarkan API Token Firebase
          */
         Route::prefix('token')->group(function () {
-            Route::post('/save', [NotificationPatientController::class, 'saveApiToken']);
+            Route::post('/update', [NotificationPatientController::class, 'updateApiToken']);
+            Route::post('/delete', [NotificationPatientController::class, 'deleteApiToken']);
+        });
+
+
+        /**
+         * * Route topik notifikasi
+         */
+        Route::prefix('topic')->group(function () {
+            Route::post('/update', [NotificationPatientController::class, 'updateTopic']);
+            Route::post('/topics', [NotificationPatientController::class, 'getTopics']);
+            Route::post('/delete', [NotificationPatientController::class, 'deleteTopic']);
         });
     });
 });

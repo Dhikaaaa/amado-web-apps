@@ -8,56 +8,125 @@ use App\Services\NotificationService\Implement\PatientNotificationService;
 
 class NotificationPatientController extends Controller
 {
-    protected $patientService;
+    protected PatientNotificationService $patientService;
 
     public function __construct(PatientNotificationService $service)
     {
         $this->patientService = $service;
     }
 
-    public function saveApiToken(Request $request)
+
+    /**
+     * * Handle Firebase Notification API Token
+     */
+    public function updateApiToken(Request $request)
     {
-        $result = $this->patientService->saveToken($request);
+        $result = $this->patientService->updateToken($request);
         if ($result) {
             return response()->json([
                 'code' => 200,
                 'status' => 'berhasil',
-                'message' => 'token berhasil disimpan'
+                'message' => 'token berhasil update'
             ]);
         }
 
         return response()->json([
             'code' => 400,
             'status' => 'gagal',
-            'message' => 'token gagal disimpan'
+            'message' => 'token gagal update'
         ]);
     }
 
-    public function updateApiToken()
+
+    public function deleteApiToken(Request $request)
     {
+        $result = $this->patientService->deleteToken($request);
+
+        if ($result) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'berhasil',
+                'message' => 'token berhasil dihapus'
+            ]);
+        }
+
+        return response()->json([
+            'code' => 400,
+            'status' => 'gagal',
+            'message' => 'token gagal dihapus'
+        ]);
     }
 
-    public function deleteApiToken()
-    {
-    }
 
     public function getApiToken()
     {
     }
 
+
+    /**
+     * * Handle Firebase Topic Notification
+     */
     public function saveTopic()
     {
     }
 
-    public function updateTopic()
+
+    public function updateTopic(Request $request)
     {
+        $result = $this->patientService->updateTopic($request);
+
+        if ($result) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'berhasil',
+                'message' => 'topic berhasil diupdate'
+            ]);
+        }
+
+        return response()->json([
+            'code' => 400,
+            'status' => 'gagal',
+            'message' => 'topic gagal diupdate'
+        ]);
     }
 
-    public function deleteTopic()
+
+    public function deleteTopic(Request $request)
     {
+        $result = $this->patientService->deleteTopic($request);
+
+        if ($result) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'berhasil',
+                'message' => 'topic berhasil dihapus'
+            ]);
+        }
+
+        return response()->json([
+            'code' => 400,
+            'status' => 'gagal',
+            'message' => 'topic gagal diupdate'
+        ]);
     }
 
-    public function getTopic()
+
+    public function getTopics(Request $request)
     {
+        $result = $this->patientService->getTopic($request);
+
+        if ($result) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'berhasil',
+                'topics' => $result
+            ]);
+        }
+
+        return response()->json([
+            'code' => 400,
+            'status' => 'gagal',
+            'message' => 'topic tidak ada'
+        ]);
     }
 }

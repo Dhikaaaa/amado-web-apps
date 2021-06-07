@@ -13,7 +13,7 @@ class CreateNotificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('notifications', function (Blueprint $table) {
+        Schema::create('notification_template_patient', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('patient_id')->unsigned();
             $table->bigInteger('notification_template_id')->unsigned();
@@ -21,7 +21,6 @@ class CreateNotificationsTable extends Migration
             // Relation
             $table->foreign('patient_id')->references('id')->on('patients')->cascadeOnDelete();
             $table->foreign('notification_template_id')->references('id')->on('notification_templates')->cascadeOnDelete();
-
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class CreateNotificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('notification_template_patient');
     }
 }

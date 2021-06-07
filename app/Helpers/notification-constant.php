@@ -1,4 +1,4 @@
 <?php
 
-const PULSE_MONITORING = "pulse-monitoring";
-const PULSE_RESULT = "pulse-result";
+const ID_TOPIC_PULSE_MONITORING = 1;
+const ID_TOPIC_PULSE_RESULT = 2;

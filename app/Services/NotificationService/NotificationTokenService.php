@@ -10,4 +10,5 @@ interface NotificationTokenService
     function saveToken(Request $request);
     function deleteToken(Request $request);
     function updateToken(Request $request);
+    function getToken($patient_id);
 }

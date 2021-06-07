@@ -55,12 +55,10 @@ Hardware yang terintegrasi ini bertugas untuk mendapatkan data saturasi oksigen 
         -   [Pasien](#reset_pasien)
 -   [Notification](#notification)
     -   [Topic](#notification_topic)
-        -   [Save Topic]($n_topic_save)
         -   [Update Topic]($n_topic_update)
         -   [Delete Topic]($n_topic_delete)
         -   [Get Topic]($n_topic_get)
     -   [Token](#notification_token)
-        -   [Save Token]($n_token_save)
         -   [Update token]($n_token_update)
         -   [Delete token]($n_token_delete)
         -   [Get token]($n_token_get)
@@ -386,7 +384,7 @@ Response :
 ## <a name="get_biodata"></a>Get Biodata
 #### <a name="biodata_pasien"></a>Pasien
 Request :
--   Method: POST
+-   Method: GET
 -   Endpoint : 'patient/bio'
 -   Header :
     -   Content-Type : application/json
@@ -519,6 +517,215 @@ Response :
 ```
 <!-- ============= RESET PASSWORD END ============= -->
 <!-- ============= PASSWORD END ============= -->
+
+
+        
+<!-- ============= NOTIFICATION START =============== -->
+# <a name="notification"></a>Notifikasi
+
+<!-- ============= TOPIC NOTIFICATION START -->
+## <a name="notification_topic"></a>Topic Notification
+#### <a name="n_topic_update"></a>Update Topic
+Request :
+-   Method : POST
+-   Endpoint : 'patient/topic/update'
+-   Header :
+    -   Authorization: Bearer
+    -   Content-Type: application/json
+-   Body:
+#### Value = ID Topic
+```json
+{
+    "topic": 2
+}
+```
+
+Response:
+-   Success:
+```json
+{
+    "code": 200,
+    "status": "berhasil",
+    "message": "topic berhasil diupdate"
+}
+```
+
+-   Failed:
+```json
+{
+    "code": 400,
+    "status": "gagal",
+    "message": "topic gagal diupdate"
+}
+```
+
+#### <a name="n_topic_delete"></a>Delete Topic
+Request:
+-   Method: POST
+-   Endpoint: 'patient/topic/delete'
+-   Header:
+    -   Authorizaton: Bearer
+    -   Content-Type: application/json
+-   Body:
+#### Value = ID Topic
+```json
+{
+    "topic": 2
+}
+```
+
+Response:
+-   Success:
+```json
+{
+    "code": 200,
+    "status": "berhasil",
+    "message": "topic berhasil dihapus"
+}
+```
+-   Failed:
+```json
+{
+    "code": 400,
+    "status": "gagal",
+    "message": "topic gagal dihapus"
+}
+```
+
+#### <a name="n_topic_get"></a>Get All Topics
+Request:
+-   Method: POST
+-   Endpoint: 'patient/topic/topics'
+-   Header:
+    -   Authorizaton: Bearer
+    -   Content-Type: application/json
+
+Response:
+-   Success:
+```json
+{
+    "code": 200,
+    "status": "berhasil",
+    "topics": [
+        {
+            "id": 1,
+            "device_id": 1,
+            "notification_topic_id": 1,
+            "title": "Waktunya Monitoring",
+            "description": "Saatnya melakukan monitoring kadar saturasi anda, lakukan dengan durasi 1 menit",
+            "image": "",
+            "created_at": "2021-06-07T07:27:14.000000Z",
+            "updated_at": "2021-06-07T07:27:14.000000Z",
+            "pivot": {
+                "patient_id": 1,
+                "notification_template_id": 1,
+                "created_at": "2021-06-07T07:48:45.000000Z",
+                "updated_at": "2021-06-07T07:48:45.000000Z"
+            }
+        },
+        {
+            "id": 2,
+            "device_id": 1,
+            "notification_topic_id": 2,
+            "title": "Hasil Monitoring",
+            "description": "Monitoring selesai silahkan lihat hasil dan solusi penanganan yang diberikan",
+            "image": "",
+            "created_at": "2021-06-07T07:27:14.000000Z",
+            "updated_at": "2021-06-07T07:27:14.000000Z",
+            "pivot": {
+                "patient_id": 1,
+                "notification_template_id": 2,
+                "created_at": "2021-06-07T12:09:22.000000Z",
+                "updated_at": "2021-06-07T12:09:22.000000Z"
+            }
+        }
+    ]
+}
+```
+-   Failed:
+```json
+{
+    "code": 400,
+    "status": "gagal",
+    "message": "topic tidak ada"
+}
+```
+<!-- ============= TOPIC NOTIFICATION END -->
+
+
+
+<!-- ============= FIREBASE TOKEN NOTIFICATION START -->
+## <a name="notification_token"></a>Firebase Token Notification
+
+#### <a name="n_token_update"></a>Update Token
+Request:
+-   Method: POST
+-   Endpoint: 'patient/token/update'
+-   Header:
+    -   Authorization: Bearer
+    -   Content-Type: application/json
+-   Body:
+```json
+{
+    "firebaseApiToken": "firebase_token"
+}
+```
+
+Response:
+-   Success:
+```json
+{
+    "code": 200,
+    "status": "berhasil",
+    "message": "token berhasil update"
+}
+```
+-   Gagal:
+```json
+{
+    "code": 400,
+    "status": "gagal",
+    "message": "token gagal diupdate"
+}
+```
+
+
+#### <a name="n_token_delete"></a>Delete Token
+Request:
+-   Method: POST
+-   Endpoint: 'patient/token/delete'
+-   Header:
+    -   Authorization: Bearer
+    -   Content-Type: application/json
+-   Body:
+```json
+{
+    "firebaseApiToken": "firebase_token"
+}
+```
+
+Response:
+-   Success:
+```json
+{
+    "code": 200,
+    "status": "berhasil",
+    "message": "token berhasil dihapus"
+}
+```
+-   Gagal:
+```json
+{
+    "code": 400,
+    "status": "gagal",
+    "message": "token gagal dihapus"
+}
+```
+#### <a name="n_token_get"></a>Get Token
+<!-- ============= FIREBASE TOKEN NOTIFICATION END -->
+<!-- ============= NOTIFICATION END =============== -->
+
+
 
 
 

@@ -17,14 +17,14 @@ class PulseOximetryNotificationSeeder extends Seeder
         NotificationTemplate::create([
             'title' => 'Waktunya Monitoring',
             'description' => 'Saatnya melakukan monitoring kadar saturasi anda, lakukan dengan durasi 1 menit',
-            'topic' => 'pulse-monitoring',
+            'notification_topic_id' => 1,
             'image' => ''
         ]);
 
         NotificationTemplate::create([
             'title' => 'Hasil Monitoring',
             'description' => 'Monitoring selesai silahkan lihat hasil dan solusi penanganan yang diberikan',
-            'topic' => 'pulse-result',
+            'notification_topic_id' => 2,
             'image' => ''
         ]);
     }
